@@ -4,7 +4,7 @@ public class Arvore {
 
 	private No raiz;
 	
-	// 
+	// Construtur da classe
 	public Arvore() {
 		raiz = null;
 	}
@@ -24,19 +24,31 @@ public class Arvore {
 		
 	}
 	
-	// Retorna Raiz
-	public No getRaiz() {
-		return raiz;
-	}
+	// Retorna uma lista com todos os nós da Árvore
+	public ArrayList<No> elementos() {
+		
+		// Cria lista de objetos e já a declara
+		ArrayList<No> lista = new ArrayList<No>();
+		lista.add(raiz);
+		int i = 0;
 
-	// Retorna o pai do no
-	public No getPai(No no) {
-		return no.pai;
+		// Captura Todos os Nó's e adiciona na lista de objetos
+		while (i < lista.size()) {
+			No atual = lista.get(i);
+			for (No n: atual.filhos) {
+				lista.add(n);
+			}
+			i++;
+		}
+		
+		return lista;
 	}
 	
-	// Pegar filhos do no
-	public ArrayList<No> getFilhos(No no){
-		return no.filhos;
+	// Retorna o elemento armazenado em elementoAntigo e o substitui por elementoNovo
+	public int atualizaElemento(No elementoAntigo, No elementoNovo) {
+		int aux = elementoAntigo.valor;
+		elementoAntigo.valor = elementoNovo.valor;
+		return aux;
 	}
 	
 	// Testa se nó é interno
@@ -54,33 +66,24 @@ public class Arvore {
 		return no.pai.valor == raiz.valor;
 	}
 
-	// Retorna uma lista com todos os nós da Árvore
-	public ArrayList<No> elementos() {
-
-		ArrayList<No> lista = new ArrayList<No>();
-		lista.add(raiz);
-		int i = 0;
-
-		while (i < lista.size()) {
-			No atual = lista.get(i);
-			for (No n: atual.filhos) {
-				lista.add(n);
-			}
-			i++;
-		}
-		return lista;
-	}
-
 	// Retorna o número de nós da Árvore
 	public int tamanho() {
 		return elementos().size();
 	}
+	
+	// Retorna Raiz
+	public No getRaiz() {
+		return raiz;
+	}
 
-	// Retorna o elemento armazenado em elementoAntigo e o substitui por elementoNovo
-	public int atualizaElemento(No elementoAntigo, No elementoNovo) {
-		int aux = elementoAntigo.valor;
-		elementoAntigo.valor = elementoNovo.valor;
-		return aux;
-	}	
+	// Retorna o pai do no
+	public No getPai(No no) {
+		return no.pai;
+	}
+	
+	// Pegar filhos do no
+	public ArrayList<No> getFilhos(No no){
+		return no.filhos;
+	}
 	
 }
