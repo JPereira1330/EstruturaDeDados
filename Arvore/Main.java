@@ -6,11 +6,12 @@ public class Main {
 		executar();
 	}
 	
+	// Metodo responsavel por executar a arvore, inserindo dados e retornnado
 	public static void executar() {
 		
 		// Criando os objetos
-		Arvore arvore = new Arvore();					// Criando arvore
-		No raiz = new No(1);							// Criando raiz
+		Arvore arvore = new Arvore();			// Criando arvore
+		No raiz = new No(1);				// Criando raiz
 		ArrayList<No> listaFilhos = new ArrayList<>();	// Criando lista de No
 		
 		// Criando filhos
