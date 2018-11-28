@@ -3,53 +3,69 @@ package application;
 import javax.swing.*;
 public class AB {
 
-	protected NodeAB raiz; // no raiz
-	protected NodeAB pt; // no de percurso
-	protected NodeAB aux;// no auxiliar de percurso (guarda o ultimo no acessado)
-	protected int pos; // posicao do no na sub-arvore, 1 = esquerda, 2 = direita
-	protected String listaArvore; //atributo para listar a arvore
+	// Declaração dos Atributos
+	protected NodeAB raiz; 		// no raiz
+	protected NodeAB pt; 		// no de percurso
+	protected NodeAB aux;		// no auxiliar de percurso (guarda o ultimo no acessado)
+	protected int pos; 		// posicao do no na sub-arvore, 1 = esquerda, 2 = direita
+	protected String listaArvore; 	//atributo para listar a arvore
 
+	// Construtor inicializando nulo
 	public AB(){
 		this.raiz = null;
 		this.pt = null;
 		this.aux = null;
 		this.listaArvore = " ";
-
 	}
 
+	// Construtor com valor inicializado apartir do parametro
 	public AB(int n){
 		this.raiz = new NodeAB(n);
 		this.pt = raiz;
 		this.listaArvore = " ";
 	}
 
-	//Metodo que retorna a raiz da arvore
+	// Metodo que retorna a raiz da arvore
 	public NodeAB raiz(){
 		return this.raiz;
 	}
+	
 	//Metodo que retorna o pai do no x da arvore
 	public NodeAB pai(NodeAB x){
 		if (x == raiz) return null;
 		else return x.pai;
 	}
+	
 	//Metodo que testa se a arvore é vazia
 	public boolean eVazia(){
 		if( raiz == null) return true;
 		else return false;
 	}
 
-	/*Metodo que exibe a arvore em pre ordem
-	na representacao de parenteses aninhados*/
+	// Metodo que exibe a arvore em pre ordem na representacao de parenteses aninhados
 	public String exibirArvorePreOrdem(){
-		if (raiz == null)return "";
+	
+		// Caso Raiz seja nula
+		if (raiz == null)
+			return "";
+		
 		NodeAB p = this.raiz; // recebe o no raiz
 		listaArvore = listaArvore + Integer.toString(p.info)+ " ";
-		if (p.esq != null){listaArvore = listaArvore + "(E" + exibirArvorePreOrdem(p.esq)+")";}
-		if (p.dir != null){listaArvore = listaArvore + "(D" + exibirArvorePreOrdem(p.dir)+ ")";}
-		String pr =listaArvore;
+	
+		// Caso a esquerda não seja nula, concatena valor do nó para printar tudo numa string
+		if (p.esq != null)
+			listaArvore = listaArvore + "(E" + exibirArvorePreOrdem(p.esq)+")";
+		
+		// Caso a dir não seja nula, concatena valor do nó para printar tudo numa string
+		if (p.dir != null)
+			listaArvore = listaArvore + "(D" + exibirArvorePreOrdem(p.dir)+ ")";
+			
+		String pr = listaArvore;
 		listaArvore = " ";
+		
 		return pr;
 	}
+	
 	/*Metodo que exibe a arvore em pre ordem (metodo privado para auxiliar
 	 para recursao) na representacao de parenteses aninhados*/
 	private String exibirArvorePreOrdem(NodeAB p){
