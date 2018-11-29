@@ -4,86 +4,82 @@ public class Arvore {
 
 	private No raiz;
 	
-	// Construtur da classe
+	// Construtor
 	public Arvore() {
 		raiz = null;
 	}
 	
-	// Metodo para inserir novos valores
+	// Metodo para inseir um novo filho
 	public void inserir(No pai, No filho) {
-	
-		// Caso raiz nula
+		
+		// Caso Raiz nula
 		if(raiz == null)
 			raiz = filho;
-
-		// Caso raiz preenchida
+		
+		// Adicionando um novo filho
 		else {
-			filho.pai = pai;
-			pai.filhos.add(filho);
+			filho.pai = pai;		// Adicionando pai no objeto filho
+			pai.filho.add(filho);   // Adicionando filho no objeto pai
 		}
 		
 	}
 	
-	// Retorna uma lista com todos os nós da Árvore
-	public ArrayList<No> elementos() {
+	// Metodo para alterar o valor do No
+	public int alterar(No antigo, No novo) {
+	
+		// Capturando valor antigo para retornar
+		int valorAntigoElemento = antigo.valor;
 		
-		// Cria lista de objetos e já a declara
+		// Alterando os nós
+		antigo.valor = novo.valor;
+		
+		return valorAntigoElemento;
+		
+	}
+	
+	public int remover(No pai, No noRemovido) {
+		
+		// Capturando valor a ser removido
+		int valorASerRemovido = noRemovido.valor;
+		
+		// Percorrendo todos os filhos para remover o desejado
+		for(int i = 0; i < pai.filho.size(); i++) {
+			
+			// Caso o filho seja igual o repassado no parametro, remove
+			if(pai.filho.get(i) == noRemovido) {
+				pai.filho.remove(i);
+			}
+			
+		}
+		
+		return valorASerRemovido;
+		
+	}
+	
+	// Metodo que retorna todos os elementos da arvore
+	public ArrayList<No> getElementos(No Pai){
+		
+		// Captura todos os elementos
 		ArrayList<No> lista = new ArrayList<No>();
 		lista.add(raiz);
 		int i = 0;
-
-		// Captura Todos os Nó's e adiciona na lista de objetos
-		while (i < lista.size()) {
+		
+		// Percorrendo os filhos da raiz
+		while( i < lista.size() ) {
+			
+			// Capturando proximo pai
 			No atual = lista.get(i);
-			for (No n: atual.filhos) {
+			
+			// Adicionando todos os filhos
+			for(No n : atual.filho) {
 				lista.add(n);
 			}
+			
 			i++;
 		}
 		
 		return lista;
 	}
 	
-	// Retorna o elemento armazenado em elementoAntigo e o substitui por elementoNovo
-	public int atualizaElemento(No elementoAntigo, No elementoNovo) {
-		int aux = elementoAntigo.valor;
-		elementoAntigo.valor = elementoNovo.valor;
-		return aux;
-	}
-	
-	// Testa se nó é interno
-	public boolean verificaNoInterno(No no) {
-		return no.filhos.size() > 0;
-	}
-	
-	// Testa se o nó é externo
-	public boolean verificaNoExterno(No no) {
-		return !verificaNoInterno(no);
-	}
-	
-	// Testa se o nó é da raiz
-	public boolean verificaRaiz(No no) {
-		return no.pai.valor == raiz.valor;
-	}
-
-	// Retorna o número de nós da Árvore
-	public int tamanho() {
-		return elementos().size();
-	}
-	
-	// Retorna Raiz
-	public No getRaiz() {
-		return raiz;
-	}
-
-	// Retorna o pai do no
-	public No getPai(No no) {
-		return no.pai;
-	}
-	
-	// Pegar filhos do no
-	public ArrayList<No> getFilhos(No no){
-		return no.filhos;
-	}
 	
 }
