@@ -2,17 +2,16 @@ import java.util.ArrayList;
 
 public class No {
 
-	// Variaveis de controle
-	No pai;
-	ArrayList<No> filhos;
+	// Atributos
+	No pai;			// Atributo Pai
+	int valor;		// Valor
+	ArrayList<No> filho;	// Lista de filhos
 	
-	// Variaveis do objeto
-	int valor;	
-	
+	// Construtor
 	public No(int valor) {
 		this.valor = valor;
 		pai = null;
-		filhos = new ArrayList<No>();
+		filho = new ArrayList<No>();
 	}	
 	
 }
